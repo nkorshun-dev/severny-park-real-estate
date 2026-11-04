@@ -40,6 +40,7 @@ table { border-collapse: collapse; }
 @media (min-width: 768px) { .section { padding: 96px 0; } }
 .section.soft { background: var(--bg-soft); }
 .lead { font-size: 1.15rem; color: var(--text-2); max-width: 60ch; }
+.demo-link { cursor: default; }
 .muted { color: var(--text-2); }
 .sr-only {
   position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;

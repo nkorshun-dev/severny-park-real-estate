@@ -3,7 +3,7 @@ export const SITE = {
   developer: "СеверСтрой Девелопмент",
   address: "г. Минск, Уручье, ул. Лесная опушка, 1",
   phone: "+375 (17) 000-00-00",
-  email: "sales@nkorshun-realestate.netlify.app",
+  email: "sales@severny-park.example",
   hours: "Пн–Пт 9:00–19:00, Сб 10:00–16:00",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://nkorshun.dev/severny-park",
   lat: 53.945,

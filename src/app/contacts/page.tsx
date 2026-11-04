@@ -25,7 +25,7 @@ export default function ContactsPage() {
         <div>
           <h2 style={{ fontSize: "1.3rem" }}>Офис продаж</h2>
           <p>{SITE.address}</p>
-          <p><a href={`tel:${SITE.phone.replace(/[^\d+]/g, "")}`}><b>{SITE.phone}</b></a></p>
+          <p><span className="demo-link" aria-label={`Телефон ${SITE.phone} (в демо не активно)`} title="Демо-проект: ссылка не активна"><b>{SITE.phone}</b></span></p>
           <p>{SITE.email}</p>
           <p className="muted">{SITE.hours}</p>
           <iframe className={styles.map} title="Карта: офис продаж на OpenStreetMap" src={MAP} loading="lazy" />

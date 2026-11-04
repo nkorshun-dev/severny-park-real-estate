@@ -197,7 +197,7 @@ export default function Home() {
           <div>
             <h2 id="contact">Отдел продаж</h2>
             <p className="lead">Подберём квартиру под бюджет, покажем шоурум и посчитаем ипотеку.</p>
-            <p><a href={`tel:${SITE.phone.replace(/[^\d+]/g, "")}`}><b>{SITE.phone}</b></a></p>
+            <p><span className="demo-link" aria-label={`Телефон ${SITE.phone} (в демо не активно)`} title="Демо-проект: ссылка не активна"><b>{SITE.phone}</b></span></p>
             <p>{SITE.address}</p>
             <p className="muted">{SITE.hours}</p>
           </div>

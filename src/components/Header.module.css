@@ -1,18 +1,22 @@
 .header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(8px); }
-.row { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: 16px; flex-wrap: wrap; }
-.logo { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; text-decoration: none; }
+.row { display: flex; align-items: center; min-height: 72px; gap: 24px; }
+.logo { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; margin-right: auto; font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
 .mark { width: 22px; height: 22px; background: var(--accent); border-radius: 6px 6px 6px 0; position: relative; }
 .mark::after { content: ""; position: absolute; right: -4px; top: -4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-2); }
-.burger { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--accent); background: transparent; color: var(--accent); font-weight: 700; cursor: pointer; }
-.nav { display: none; flex-direction: column; width: 100%; padding: 8px 0 16px; gap: 2px; }
-.nav.open { display: flex; }
-.nav a { text-decoration: none; padding: 10px 0; font-weight: 600; }
-.nav a[aria-current="page"] { color: var(--accent); text-decoration: underline; text-underline-offset: 6px; }
-.tools { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; margin-top: 8px; }
+.burger { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--accent); background: transparent; color: var(--accent); font-weight: 700; cursor: pointer; white-space: nowrap; }
+.nav { display: none; align-items: center; gap: 24px; }
+.nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-weight: 600; font-size: .95rem; white-space: nowrap; }
+.nav a[aria-current="page"], .panel a[aria-current="page"] { color: var(--accent); text-decoration: underline; text-underline-offset: 6px; }
+.tools { display: none; align-items: center; gap: 16px; white-space: nowrap; }
+.fav { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-weight: 600; font-size: .95rem; }
 .phone { color: var(--accent); font-weight: 700; }
-@media (min-width: 1100px) {
-  .burger { display: none; }
-  .nav, .nav.open { display: flex; flex-direction: row; width: auto; align-items: center; gap: 18px; padding: 0; }
-  .nav a { padding: 8px 0; font-size: .92rem; }
-  .tools { flex-direction: row; margin: 0 0 0 8px; align-items: center; gap: 14px; }
+.panel { display: none; flex-direction: column; padding: 8px 0 20px; border-top: 1px solid var(--line); }
+.panel.open { display: flex; }
+.panel > a { display: flex; align-items: center; min-height: 44px; text-decoration: none; font-weight: 600; }
+.ptools { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 8px; }
+/* от 1240 в строке основные пункты и инструменты, в меню остаются только «лишние» пункты */
+@media (min-width: 1240px) {
+  .nav, .tools { display: flex; }
+  .panel.open { position: absolute; right: max(32px, calc((100vw - 1280px) / 2 + 32px)); top: 100%; min-width: 260px; padding: 8px 20px 12px; background: #fff; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 16px 16px; box-shadow: 0 12px 30px rgba(18,21,18,.12); }
+  .panel .mainLink, .panel .ptools { display: none; }
 }

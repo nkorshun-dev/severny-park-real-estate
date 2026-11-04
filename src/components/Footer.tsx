@@ -22,7 +22,7 @@ export function Footer() {
         </div>
         <div>
           <p className={styles.h}>Отдел продаж</p>
-          <p><a href={`tel:${SITE.phone.replace(/[^\d+]/g, "")}`}>{SITE.phone}</a></p>
+          <p><span className="demo-link" aria-label={`Телефон ${SITE.phone} (в демо не активно)`} title="Демо-проект: ссылка не активна">{SITE.phone}</span></p>
           <p>{SITE.email}</p>
           <p>{SITE.hours}</p>
         </div>

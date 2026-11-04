@@ -1,4 +1,4 @@
-.box { background: #fff; border-radius: 20px; padding: 20px; display: grid; gap: 16px; box-shadow: 0 10px 40px rgba(18,21,18,.12); }
+.box { color: var(--text); background: #fff; border-radius: 20px; padding: 20px; display: grid; gap: 16px; box-shadow: 0 10px 40px rgba(18,21,18,.12); }
 @media (min-width: 900px) { .box { grid-template-columns: 1.3fr 1fr auto; align-items: end; padding: 24px; } }
 .fs { border: 0; padding: 0; margin: 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
 .fs legend, .fs label { font-weight: 600; font-size: .95rem; padding: 0; }

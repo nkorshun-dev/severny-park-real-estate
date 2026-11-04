@@ -1,13 +1,13 @@
-.hero { background: linear-gradient(180deg, #0f2a20, var(--accent)); color: #fff; padding: 40px 0 0; position: relative; overflow: hidden; }
+.hero { background: linear-gradient(180deg, #0f2a20, var(--accent)); color: #fff; padding: 40px 0 0; position: relative; }
 .heroGrid { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr); align-items: center; }
 @media (min-width: 960px) { .heroGrid { grid-template-columns: 1.05fr 1fr; } .hero { padding-top: 64px; } }
 .hero h1 { color: #fff; font-size: clamp(2rem, 5.2vw, 3.6rem); }
 .hero h1 em { font-style: normal; color: var(--accent-2); }
 .hero p { color: #d3dfd8; max-width: 52ch; }
+.hero :global(.tag) { color: #121512; }
 .art { border-radius: 24px 24px 0 0; overflow: hidden; align-self: end; }
-.pick { transform: translateY(50%); position: relative; z-index: 2; }
-.afterHero { height: 80px; }
-@media (min-width: 900px) { .afterHero { height: 56px; } }
+.pick { margin-bottom: -48px; position: relative; z-index: 2; }
+.afterHero { height: 48px; }
 
 .facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .fact { border-top: 3px solid var(--accent); padding-top: 16px; }
