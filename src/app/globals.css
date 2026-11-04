@@ -70,3 +70,6 @@ table { border-collapse: collapse; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Защита картинок: без перетаскивания и без меню «сохранить» при долгом нажатии */
+img { -webkit-user-drag: none; user-select: none; -webkit-touch-callout: none; }
