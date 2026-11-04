@@ -1,0 +1,17 @@
+.card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.plan { position: relative; background: var(--bg-soft); padding: 28px 20px 12px; }
+.status { position: absolute; left: 12px; top: 12px; font-size: .78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.free { background: var(--free); color: #fff; }
+.reserved { background: var(--reserved); color: var(--text); }
+.sold { background: var(--sold); color: var(--text); }
+.body { padding: 16px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+.title { margin: 0 0 4px; font-size: 1.15rem; }
+.meta { margin: 0 0 6px; color: var(--text-2); font-size: .9rem; }
+.price { margin: 6px 0 2px; font-family: var(--font-head); font-weight: 800; font-size: 1.4rem; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 12px; align-items: center; }
+.icon, .cmp {
+  min-height: 44px; border-radius: 999px; border: 1px solid var(--accent); background: transparent; color: var(--accent);
+  cursor: pointer; font-weight: 700; padding: 0 14px;
+}
+.icon { width: 44px; padding: 0; font-size: 1.2rem; }
+.on { background: var(--accent); color: #fff; }

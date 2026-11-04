@@ -1,0 +1,30 @@
+.wrap { display: flex; flex-direction: column; gap: 12px; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px; }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1.5px solid var(--accent); border-radius: 999px; overflow: hidden; }
+.seg button { min-height: 44px; padding: 0 14px; border: 0; background: #fff; color: var(--accent); font-weight: 700; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.legend { list-style: none; display: flex; gap: 20px; padding: 0; margin: 0; flex-wrap: wrap; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend i { width: 16px; height: 16px; border-radius: 4px; display: inline-block; }
+.cols { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 1100px) { .cols { grid-template-columns: minmax(0, 1fr) 320px; } .panel { position: sticky; top: 80px; } }
+.scroll { overflow: auto; max-height: 75vh; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; max-width: 100%; }
+.grid { display: grid; gap: 4px; padding: 8px; width: max-content; min-width: 100%; }
+.sticky { position: sticky; left: 0; background: #fff; z-index: 2; }
+.floorHead, .floorNum { display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: var(--font-head); }
+.floorHead { font-size: .75rem; color: var(--text-2); }
+.entHead { text-align: center; font-weight: 700; padding: 4px; background: var(--bg-soft); border-radius: 8px; }
+.cell {
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; min-height: 52px;
+  border: 2px solid transparent; border-radius: 8px; padding: 4px; font-size: .78rem; line-height: 1.2; cursor: pointer;
+}
+.cell b { font-size: .8rem; }
+.free { background: var(--free); color: #fff; }
+.free:hover { outline: 2px solid var(--accent-2); }
+.reserved { background: var(--reserved); color: var(--text); cursor: not-allowed; }
+.sold { background: var(--sold); color: #3d423d; cursor: not-allowed; }
+.dim { opacity: .28; }
+.sel { border-color: var(--accent-2); box-shadow: 0 0 0 3px var(--accent); }
+.panel { background: var(--bg-soft); border-radius: var(--radius); padding: 20px; }
+.pTitle { font-size: 1.5rem; margin: 8px 0 4px; }
+.pPrice { font-family: var(--font-head); font-weight: 800; font-size: 1.7rem; margin: 8px 0; }

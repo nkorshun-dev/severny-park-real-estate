@@ -1,0 +1,19 @@
+.wrap { padding: 4px 0 8px; }
+.values { display: flex; justify-content: space-between; font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
+.track { position: relative; height: 28px; }
+.track::before { content: ""; position: absolute; left: 0; right: 0; top: 12px; height: 4px; border-radius: 2px; background: var(--line); }
+.fill { position: absolute; top: 12px; height: 4px; border-radius: 2px; background: var(--accent); }
+.track input {
+  position: absolute; left: 0; width: 100%; top: 0; height: 28px; margin: 0;
+  -webkit-appearance: none; appearance: none; background: none; pointer-events: none;
+}
+.track input::-webkit-slider-thumb {
+  -webkit-appearance: none; pointer-events: auto; width: 24px; height: 24px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--accent); cursor: grab;
+}
+.track input::-moz-range-thumb { pointer-events: auto; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); cursor: grab; }
+.track input::-webkit-slider-runnable-track { background: none; }
+.track input::-moz-range-track { background: none; }
+.track input:focus-visible { outline: none; }
+.track input:focus-visible::-webkit-slider-thumb { outline: 3px solid var(--accent-2); box-shadow: 0 0 0 5px var(--accent); }
+.track input:focus-visible::-moz-range-thumb { outline: 3px solid var(--accent-2); box-shadow: 0 0 0 5px var(--accent); }

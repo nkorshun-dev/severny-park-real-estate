@@ -1,0 +1,6 @@
+.wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+.table { width: 100%; min-width: 520px; }
+.table th, .table td { text-align: right; padding: 10px 14px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.table th:first-child { text-align: left; }
+.table thead th { background: var(--bg-soft); font-size: .85rem; color: var(--text-2); }
+.pager { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
