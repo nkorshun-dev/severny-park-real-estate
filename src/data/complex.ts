@@ -5,7 +5,7 @@ export const SITE = {
   phone: "+375 (17) 000-00-00",
   email: "sales@nkorshun-realestate.netlify.app",
   hours: "Пн–Пт 9:00–19:00, Сб 10:00–16:00",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://nkorshun-realestate.netlify.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://nkorshun.dev/severny-park",
   lat: 53.945,
   lon: 27.69,
 };

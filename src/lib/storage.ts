@@ -56,13 +56,13 @@ const isIdList = (v: unknown) => Array.isArray(v) && v.every((x) => typeof x ===
 export const MAX_COMPARE = 3;
 
 export function useFavorites() {
-  const [list, set] = useStored<string[]>("sp:fav", EMPTY, isIdList);
+  const [list, set] = useStored<string[]>("severny-park:fav", EMPTY, isIdList);
   const toggle = (id: string) => set(list.includes(id) ? list.filter((x) => x !== id) : [...list, id]);
   return { list, toggle };
 }
 
 export function useCompare() {
-  const [list, set] = useStored<string[]>("sp:cmp", EMPTY, isIdList);
+  const [list, set] = useStored<string[]>("severny-park:cmp", EMPTY, isIdList);
   /** Возвращает false, если лимит достигнут. */
   const toggle = (id: string) => {
     if (list.includes(id)) { set(list.filter((x) => x !== id)); return true; }
@@ -74,4 +74,4 @@ export function useCompare() {
 }
 
 export type Currency = "BYN" | "USD";
-export const useCurrency = () => useStored<Currency>("sp:cur", "BYN", (v) => v === "BYN" || v === "USD");
+export const useCurrency = () => useStored<Currency>("severny-park:cur", "BYN", (v) => v === "BYN" || v === "USD");
