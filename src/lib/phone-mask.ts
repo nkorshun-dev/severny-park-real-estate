@@ -1,9 +1,8 @@
 /** Оставляет только цифры национального номера (без кода 375), максимум 9. */
+// «+375» маски (или его стёртая часть) — не номер; затем снимаем набранный пользователем 375/80:
+// кодов оператора на 37 и 80 нет, поэтому «+375 (375…» и «+375 (80…» — это префикс, а не номер.
 export function nationalDigits(input: string): string {
-  let d = input.replace(/\D/g, "");
-  if (d.startsWith("375")) d = d.slice(3);
-  else if (d.startsWith("80")) d = d.slice(2);
-  return d.slice(0, 9);
+  return input.replace(/^\s*\+(375|37|3)?/, "").replace(/\D/g, "").replace(/^375/, "").replace(/^80/, "").slice(0, 9);
 }
 
 /** +375 (29) 123-45-67 */
@@ -24,7 +23,8 @@ export const isCompletePhone = (input: string) => nationalDigits(input).length =
 export function editPhone(raw: string, caret: number, prev: string): { value: string; caret: number } {
   let d = nationalDigits(raw);
   let before = nationalDigits(raw.slice(0, caret)).length;
-  if (raw.length < prev.length && d === nationalDigits(prev) && before > 0) {
+  // стёрли один знак маски (Backspace/Delete), а не заменили всё поле вставкой — убираем цифру перед ним
+  if (raw === prev.slice(0, caret) + prev.slice(caret + 1) && d === nationalDigits(prev) && before > 0) {
     d = d.slice(0, before - 1) + d.slice(before);
     before--;
   }

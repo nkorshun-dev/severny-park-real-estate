@@ -37,7 +37,8 @@ export function LeadForm({ title, submitLabel = "Отправить заявку
     const el = e.currentTarget;
     const r = editPhone(el.value, el.selectionStart ?? el.value.length, v.phone);
     setV({ ...v, phone: r.value });
-    setTimeout(() => el.setSelectionRange(r.caret, r.caret), 0); // после того, как React выставит значение
+    // после того, как React выставит значение; в конце поля не нужно — при быстром наборе вернуло бы курсор назад
+    if (r.caret < r.value.length) setTimeout(() => el.setSelectionRange(r.caret, r.caret), 0);
   }
 
   if (state === "done") {
