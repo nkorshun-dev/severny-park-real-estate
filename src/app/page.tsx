@@ -43,7 +43,7 @@ function Genplan() {
       {BUILDINGS.map((b, i) => {
         const p = BLD_POS[i];
         return (
-          <Link key={b.id} href={`/buildings/?b=${b.id}`} aria-label={`${b.name}: открыть шахматку`}>
+          <Link key={b.id} href={`/buildings/?b=${b.id}`} aria-label={`${b.name} ${b.floors} эт. · ${b.deadline}: открыть шахматку`}>
             <g style={{ cursor: "pointer" }}>
               <rect x={p.x} y={p.y} width={p.w} height={p.h} rx={6} fill="#1f4d3a" stroke="#fff" strokeWidth={3} />
               <text x={p.x + p.w / 2} y={p.y + p.h / 2 - 2} textAnchor="middle" fontSize={15} fontWeight={800} fill="#d7f171">{b.name}</text>

@@ -4,6 +4,8 @@
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field label, .type legend { font-weight: 600; font-size: .95rem; }
 .field input { min-height: 48px; padding: 0 14px; border: 1.5px solid #9aa09a; border-radius: 12px; background: #fff; width: 100%; }
+.field input[aria-invalid="true"] { border-color: var(--danger); }
+.err { color: var(--danger); margin: 0; font-size: .9rem; }
 .inline { display: flex; gap: 8px; }
 .seg { display: inline-flex; border: 1.5px solid var(--accent); border-radius: 12px; overflow: hidden; flex: none; }
 .seg button { min-width: 56px; border: 0; background: #fff; color: var(--accent); font-weight: 700; cursor: pointer; }

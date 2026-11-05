@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { annuityPayment, calcMortgage, downPaymentValue, requiredIncome } from "./mortgage";
+import { annuityPayment, calcMortgage, downPaymentValue, requiredIncome, validateMortgage } from "./mortgage";
 
 // Ручная формула: P·r·(1+r)^n / ((1+r)^n − 1)
 const manualAnnuity = (p: number, r: number, n: number) => (p * r * (1 + r) ** n) / ((1 + r) ** n - 1);
@@ -60,9 +60,55 @@ describe("прочее", () => {
   it("необходимый доход = платёж / 0,4", () => {
     expect(requiredIncome(800)).toBe(2000);
   });
+  it("нулевой срок: пустой график и нулевая переплата, а не «−кредит»", () => {
+    const res = calcMortgage({ loan: 90000, months: 0, ratePct: 12.5, type: "annuity" });
+    expect(res.schedule).toHaveLength(0);
+    expect(res.overpay).toBe(0);
+    expect(calcMortgage({ loan: 90000, months: -60, ratePct: 12.5, type: "diff" }).overpay).toBe(0);
+  });
   it("первый взнос в % и в BYN", () => {
     expect(downPaymentValue(200000, 20, "pct")).toBe(40000);
     expect(downPaymentValue(200000, 50000, "byn")).toBe(50000);
     expect(downPaymentValue(200000, 999999, "byn")).toBe(200000);
+  });
+});
+
+describe("валидация калькулятора", () => {
+  const ok = { price: 250000, down: 20, years: 20, ratePct: 12.5 };
+  const v = (patch: Partial<typeof ok>, mode: "pct" | "byn" = "pct") => validateMortgage({ ...ok, ...patch }, mode);
+
+  it("корректные данные — без ошибок, включая ставку 0% и взнос 0", () => {
+    expect(v({})).toEqual({});
+    expect(v({ price: 120000, down: 0, years: 10, ratePct: 0 })).toEqual({});
+    expect(v({ years: 1 })).toEqual({});
+    expect(v({ years: 30 })).toEqual({});
+  });
+
+  it.each([0, NaN, -5, 0.5, 31])("срок %s — ошибка", (years) => {
+    expect(v({ years }).years).toBeTruthy();
+  });
+
+  it.each([0, NaN, -100000])("стоимость %s — ошибка", (price) => {
+    expect(v({ price }).price).toBeTruthy();
+  });
+
+  it("взнос: пусто, отрицательный, ≥ стоимости", () => {
+    expect(v({ down: NaN }).down).toBeTruthy();
+    expect(v({ down: -5 }).down).toBeTruthy();
+    expect(v({ down: 100 }).down).toBeTruthy();
+    expect(v({ down: 120 }).down).toBeTruthy();
+    expect(v({ down: 99 }).down).toBeUndefined();
+    expect(v({ down: 250000 }, "byn").down).toBeTruthy();
+    expect(v({ down: 249999 }, "byn").down).toBeUndefined();
+  });
+
+  it("ставка: пусто и отрицательная — ошибка", () => {
+    expect(v({ ratePct: NaN }).ratePct).toBeTruthy();
+    expect(v({ ratePct: -1 }).ratePct).toBeTruthy();
+  });
+
+  it("проверенные примеры: 2272 и 1000 BYN в месяц", () => {
+    expect(Math.round(calcMortgage({ loan: 200000, months: 240, ratePct: 12.5, type: "annuity" }).firstPayment)).toBe(2272);
+    expect(calcMortgage({ loan: 120000, months: 120, ratePct: 0, type: "annuity" }).firstPayment).toBeCloseTo(1000, 9);
   });
 });

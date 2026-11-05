@@ -58,8 +58,31 @@ export function calcMortgage(input: MortgageInput): MortgageResult {
     firstPayment: schedule[0]?.payment ?? 0,
     lastPayment: schedule[schedule.length - 1]?.payment ?? 0,
     total,
-    overpay: total - Math.max(input.loan, 0),
+    overpay: schedule.length ? total - input.loan : 0, // без графика переплаты нет, а не «−кредит»
   };
+}
+
+export const MIN_YEARS = 1;
+export const MAX_YEARS = 30;
+
+export interface MortgageFields {
+  price: number; // NaN — поле пустое или не число
+  down: number;
+  years: number;
+  ratePct: number;
+}
+export type MortgageErrors = Partial<Record<keyof MortgageFields, string>>;
+
+/** Ошибки по полям; пустой объект — данные корректны. */
+export function validateMortgage(f: MortgageFields, downMode: "byn" | "pct"): MortgageErrors {
+  const e: MortgageErrors = {};
+  if (!Number.isFinite(f.price) || f.price <= 0) e.price = "Укажите стоимость больше 0";
+  if (!Number.isFinite(f.down)) e.down = "Укажите первый взнос, можно 0";
+  else if (f.down < 0) e.down = "Взнос не может быть отрицательным";
+  else if (downMode === "pct" ? f.down >= 100 : !e.price && f.down >= f.price) e.down = "Взнос должен быть меньше стоимости";
+  if (!Number.isFinite(f.years) || f.years < MIN_YEARS || f.years > MAX_YEARS) e.years = `Срок от ${MIN_YEARS} до ${MAX_YEARS} лет`;
+  if (!Number.isFinite(f.ratePct) || f.ratePct < 0) e.ratePct = "Ставка не может быть меньше 0%";
+  return e;
 }
 
 /** Доход, при котором самый большой платёж не превышает MAX_LOAD. */

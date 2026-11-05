@@ -17,8 +17,9 @@ export function Gallery({ limit }: { limit?: number }) {
       <ul className={styles.grid}>
         {items.map((p, i) => (
           <li key={p.date}>
-            <button type="button" className={styles.item} onClick={() => setOpen(i)} aria-label={`Открыть: ${p.title}, ${formatDate(p.date)}`}>
-              <StageArt percent={p.percent} label={p.title} />
+            <button type="button" className={styles.item} onClick={() => setOpen(i)}>
+              {/* имя кнопки — видимые дата и заголовок; картинка дублировала бы заголовок */}
+              <span aria-hidden="true"><StageArt percent={p.percent} label={p.title} /></span>
               <span className={styles.cap}>
                 <time dateTime={p.date}>{formatDate(p.date)}</time>
                 <strong>{p.title}</strong>
